@@ -50,11 +50,12 @@ dependencies {
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 	//https://mvnrepository.com/artifact/net.openhft/zero-allocation-hashing
 	implementation 'net.openhft:zero-allocation-hashing:0.15'
+
 	//https://mvnrepository.com/artifact/com.jakewharton.threetenabp/threetenabp
 	implementation 'com.jakewharton.threetenabp:threetenabp:1.3.1'
-
 }
 
 test {
