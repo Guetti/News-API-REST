@@ -40,12 +40,29 @@ import java.util.List;
  */
 @RestController
 public class NewsController {
+
+    /**
+     * The Repo of News
+     */
+    private final NewsRepository newsRepository;
+
+    /**
+     * The constructor of NewsController.
+     * @param newsRepository to use.
+     */
+    public NewsController(NewsRepository newsRepository){
+        this.newsRepository = newsRepository;
+    }
+
     /**
      * @return all the News in the backend.
      */
     @GetMapping("/v1/news")
-    public List<News> getNews() {
-        return new ArrayList<>();
+    public List<News> all() {
+        // Equals to SELECT * FROM News;
+        final List<News> theNews = this.newsRepository.findAll();
+        // TODO: Show the news in console
+        return theNews;
     }
 
     /**
@@ -55,17 +72,8 @@ public class NewsController {
      */
     @GetMapping("/v1/news/{id}")
     public News one(@PathVariable final Long id){
-        // FIXME: Only for testing.
-        News news = new News(
-                "Astronomía, Ciencias del Mar e intercambio estudiantil potenciará alianza entre UCN y embajada de EE. UU.",
-                "Noticias UCN",
-                "UCN",
-                "https://www.noticias.ucn.cl/destacado/astronomia-ciencias-del-mar-e-intercambio-estudiantil-potenciara-alianza-entre-ucn-y-embajada-de-ee-uu/",
-                "https://www.noticias.ucn.cl/wp-content/uploads/2021/12/nt-BIMG_5178.jpg",
-                "Rector del plantel y representante de la misión diplomática norteamericana en Chile sostuvieron un encuentro en la Casa Central.",
-                "Potenciar el área de astronomía tanto de la casa de estudios como también del norte en general, apoyar con implementos a la investigación oceánica que realiza la Facultad de Ciencias del Mar, y reactivar el intercambio estudiantil –suspendido por la pandemia- fueron algunos de los puntos abordados en una reunión sostenida entre la Universidad Católica del Norte (UCN) con la embajada de los Estados Unidos en nuestro país.",
-                ZonedDateTime.now(ZoneId.of("-4"))
-        );
-        return news;
+        // FIXME: Change the RuntimeException to 404.
+        return this.newsRepository.findById(id).orElseThrow(() -> new RuntimeException("News not Found :("));
+
     }
 }
