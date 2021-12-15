@@ -31,12 +31,25 @@ import org.threeten.bp.ZonedDateTime;
 
 import lombok.Getter;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * The News class.
  * @author Gustavo Patricio Szigethi Araya.
  */
-
+@Entity
 public final class News {
+
+    /**
+     * Primary Key.
+     */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Getter
+    private Long key;
     /**
      * ID unique.
      */
