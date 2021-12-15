@@ -31,10 +31,7 @@ import org.threeten.bp.ZonedDateTime;
 
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * The News class.
@@ -53,6 +50,7 @@ public final class News {
     /**
      * ID unique.
      */
+    // @Column(unique = true)
     @Getter
     private Long id;
     /**
